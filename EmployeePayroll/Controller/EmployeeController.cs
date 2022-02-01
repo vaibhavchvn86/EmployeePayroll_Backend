@@ -66,11 +66,11 @@ namespace EmployeePayroll.Controller
 
         [HttpDelete]
         [Route("delemp")]
-        public async Task<IActionResult> DeleteEmp([FromBody] RegisterModel del)
+        public async Task<IActionResult> DeleteEmp(string id)
         {
             try
             {
-                var check = await this.manager.DeleteEmp(del);
+                var check = await this.manager.DeleteEmp(id);
                 if (check != null)
                 {
                     return Ok(new ResponseModel<RegisterModel> { Status = true, Message = "Employee Deleted Successfully", Data = check });
