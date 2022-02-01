@@ -28,6 +28,30 @@ namespace ManagerLayer.Manager
             }
         }
 
+        public async Task<RegisterModel> DeleteEmp(RegisterModel del)
+        {
+            try
+            {
+                return await this.repo.DeleteEmp(del);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<RegisterModel> EditEmp(RegisterModel edit)
+        {
+            try
+            {
+                return await this.repo.EditEmp(edit);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public IEnumerable<RegisterModel> GetEmp()
         {
             try

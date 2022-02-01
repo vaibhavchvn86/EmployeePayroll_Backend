@@ -25,7 +25,7 @@ namespace EmployeePayroll.Controller
             try
             {
                 var check = await this.manager.AddEmp(add);
-                if(check != null)
+                if (check != null)
                 {
                     return Ok(new ResponseModel<RegisterModel> { Status = true, Message = "Employee Register Successfully", Data = check });
                 }
@@ -35,7 +35,53 @@ namespace EmployeePayroll.Controller
                 }
 
             }
+            catch (Exception e)
+            {
+                return NotFound(new { Status = false, Message = e.Message });
+            }
+        }
+
+        [HttpPut]
+        [Route("editemp")]
+        public async Task<IActionResult> EditEmp([FromBody] RegisterModel edit)
+        {
+            try
+            {
+                var check = await this.manager.EditEmp(edit);
+                if(check != null)
+                {
+                    return Ok(new ResponseModel<RegisterModel> { Status = true, Message = "Employee Details updated Successfully", Data = check });
+                }
+                else
+                {
+                    return BadRequest(new { Status = false, Message = "Employee Details Not Updated" });
+                }
+
+            }
             catch(Exception e)
+            {
+                return NotFound(new { Status = false, Message = e.Message });
+            }
+        }
+
+        [HttpDelete]
+        [Route("delemp")]
+        public async Task<IActionResult> DeleteEmp([FromBody] RegisterModel del)
+        {
+            try
+            {
+                var check = await this.manager.DeleteEmp(del);
+                if (check != null)
+                {
+                    return Ok(new ResponseModel<RegisterModel> { Status = true, Message = "Employee Deleted Successfully", Data = check });
+                }
+                else
+                {
+                    return BadRequest(new { Status = false, Message = "Employee Not Deleted" });
+                }
+
+            }
+            catch (Exception e)
             {
                 return NotFound(new { Status = false, Message = e.Message });
             }
