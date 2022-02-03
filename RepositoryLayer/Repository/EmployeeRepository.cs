@@ -61,9 +61,9 @@ namespace RepositoryLayer.Repository
                     await this.Employee.UpdateOneAsync(x => x.UserID == edit.UserID,
                                 Builders<RegisterModel>.Update.Set(x => x.Name, edit.Name)
                                 .Set(x => x.Gender, edit.Gender)
+                                .Set(x => x.ProfileImage, edit.ProfileImage)
                                 .Set(x => x.Department, edit.Department)
                                 .Set(x => x.Salary, edit.Salary)
-                                .Set(x => x.StartDate, edit.StartDate)
                                 .Set(x => x.Notes, edit.Notes));
                     return edit;
                 }
